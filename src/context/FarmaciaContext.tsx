@@ -1,6 +1,6 @@
-import React, { createContext, useState, useContext } from 'react';
+import axios from 'axios';
+import React, { createContext, useState, useContext, useEffect } from 'react';
 
-// Interface para o tipo de dados da farmácia
 interface Farmacia {
   _id: string;
   nome: string;
@@ -13,22 +13,36 @@ interface Farmacia {
   longitude: number;
 }
 
-// Interface para o contexto
 interface FarmaciaContextType {
   farmacias: Farmacia[];
-  setFarmacias: React.Dispatch<React.SetStateAction<Farmacia[]>>;
+  loading: boolean;
 }
 
-// Criar o contexto com valores iniciais vazios
 export const FarmaciaContext = createContext<FarmaciaContextType | undefined>(undefined);
 
-// Criar o provider do contexto
 export const FarmaciaProvider: React.FC<{ children: React.ReactNode }> = ({ children }) => {
-  // Estado para armazenar a lista de farmácias
   const [farmacias, setFarmacias] = useState<Farmacia[]>([]);
+  const [loading, setLoading] = useState(true);
+  const baseURL = "http://localhost:3000/api/farmacias";
+
+
+  useEffect(() => {
+    const fetchFarmacias = async () => {
+      try {
+        const response = await axios.get(baseURL);
+        setFarmacias(response.data);
+        setLoading
+      } catch (error) {
+        console.error('Erro ao buscar farmácias:', error);
+      }
+      setLoading(false)
+    };
+
+    fetchFarmacias();
+  }, []);
 
   return (
-    <FarmaciaContext.Provider value={{ farmacias, setFarmacias }}>
+    <FarmaciaContext.Provider value={{ farmacias, loading }}>
       {children}
     </FarmaciaContext.Provider>
   );
