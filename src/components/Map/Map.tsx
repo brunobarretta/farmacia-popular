@@ -1,10 +1,7 @@
-// import { GoogleMap, InfoWindow, Marker, useLoadScript } from '@react-google-maps/api';
 import { useEffect, useMemo, useRef, useState } from 'react';
 import '@fortawesome/fontawesome-free/css/all.min.css';
-
 import Map, { GeoJSONSource, Layer, MapRef, Marker, Source } from "react-map-gl";
 import "mapbox-gl/dist/mapbox-gl.css";
-import axios from 'axios';
 import { clusterCountLayer, clusterLayer, unclusteredCircleLayer, unclusteredTextLayer } from './layers';
 import { useFarmaciaContext } from '../../hooks/useFarmacia';
 
@@ -25,27 +22,14 @@ const MapComponent = () => {
   const [selectedMarker, setSelectedMarker] = useState(null);
   const [forceUpdate, setForceUpdate] = useState(false);
   const [searchQuery, setSearchQuery] = useState('');
-  const { farmacias, setFarmacias } = useFarmaciaContext();
+  const { farmacias } = useFarmaciaContext();
   const mapRef = useRef<MapRef>();
-  const MapboxAPIConfig = "pk.eyJ1IjoiYnRjb2RlcnMiLCJhIjoiY2x2ODV5dnpkMGhtczJqbnl5ZGU1czBpMCJ9.zesmIkCQE3ATFFvjYENPzg"
-  const baseURL = "http://localhost:3000/api/farmacias";
+  const mapboxToken = import.meta.env.VITE_MAPBOX_ACCESS_TOKEN;
   const [data, setData] = useState(null);
-  const [loading, setLoading] = useState(true);
-
-
-  useEffect(() => {
-    if(farmacias && farmacias.length) {
-      setLoading(false)
-    } else {
-      axios.get(baseURL).then((response) => {
-        setFarmacias(response.data);
-        setLoading(false)
-      });
-    }
-  }, [])
 
   useEffect(() => {
 
+   if (farmacias && farmacias.length) { 
     const features = farmacias.map((farmacia:Farmacia) => ({
       type: 'Feature',
       geometry: {
@@ -64,6 +48,7 @@ const MapComponent = () => {
       type: 'FeatureCollection',
       features,
     });
+  }
 
   }, [farmacias])
 
@@ -107,7 +92,7 @@ const MapComponent = () => {
 
   const handleSearch = async () => {
     const response = await fetch(
-      `https://api.mapbox.com/geocoding/v5/mapbox.places/${encodeURIComponent(searchQuery)}.json?access_token=${MapboxAPIConfig}`
+      `https://api.mapbox.com/geocoding/v5/mapbox.places/${encodeURIComponent(searchQuery)}.json?access_token=${mapboxToken}`
     );
     const data = await response.json();
     if (data.features && data.features.length > 0) {
@@ -200,7 +185,7 @@ const MapComponent = () => {
       {mylocation && mylocation.lat ?
         <Map
           ref={mapRef}
-          mapboxAccessToken={MapboxAPIConfig}
+          mapboxAccessToken={mapboxToken}
           initialViewState={{
             longitude: mylocation.lng,
             latitude: mylocation.lat,
