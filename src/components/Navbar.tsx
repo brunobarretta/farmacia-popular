@@ -7,7 +7,7 @@ const Navbar = () => {
   return (
     <>
       <header className="bg-gray-800 md:sticky top-0 z-20">
-        <div className="container mx-auto flex flex-wrap p-5 md:flex-row items-center justify-between">
+        <div className="container mx-auto flex flex-wrap p-5 md:flex-row items-center left">
           <button
             className="text-white md:hidden mr-4"
             onClick={() => setIsOpen(!isOpen)}
@@ -26,13 +26,13 @@ const Navbar = () => {
               Mapa
             </NavLink>
 
+            <NavLink to="/medicamentos" className="mr-5 hover:text-white">
+              Lista Medicamentos
+            </NavLink>
+
             <NavLink to="/dashboard" className="mr-5 hover:text-white">
               Dashboard
             </NavLink>
-
-            <a href="#projects" className="mr-5 hover:text-white">
-              texto
-            </a>
             <a href="#skills" className="mr-5 hover:text-white">
               texto
             </a>
@@ -68,9 +68,9 @@ const Navbar = () => {
               <NavLink to="/dashboard" className="mb-5 hover:text-white">
                 Dashboard
               </NavLink>
-              <a href="#projects" className="mb-5 hover:text-white">
-                texto
-              </a>
+              <NavLink to="/medicamentos" className="mb-5 hover:text-white">
+                Lista Medicamentos
+              </NavLink>
               <a href="#skills" className="mb-5 hover:text-white">
                 texto
               </a>
