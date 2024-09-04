@@ -22,14 +22,14 @@ Certifique-se de ter as seguintes ferramentas instaladas antes de prosseguir:
 1. Clone o repositório:
 
 ```bash
-git clone https://github.com/brunobarretta/portfolio.git
+git clone https://github.com/brunobarretta/farmacia-popular.git
 ```
 
 
 2. Navegue até o diretório do projeto:
 
 ```bash
-cd portfolio
+cd farmacia-popular
 ```
 
 3. Instale as dependências:
