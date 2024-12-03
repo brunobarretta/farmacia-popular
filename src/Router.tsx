@@ -1,8 +1,9 @@
 import { Route, Routes, Outlet } from 'react-router-dom';
-import MapComponent from './components/Map/Map';
-import Dashboard from './pages/Dashboard';
-import Navbar from './components/Navbar';
-import MedicamentosTable from './pages/Medicamentos';
+import Estatisticas from './pages/Estatisticas/estatisticas';
+import Navbar from './components/Navbar/navbar';
+import MedicamentosTable from './pages/Medicamentos/medicamentos';
+import About from './pages/About/about';
+import PharmMap from './pages/Map/map';
 
 function Layout() {
   return (
@@ -17,9 +18,10 @@ export function Router() {
   return (
     <Routes>
       <Route path="/" element={<Layout />}>
-        <Route index element={<MapComponent />} />
-        <Route path="dashboard" element={<Dashboard />} />
+        <Route index element={<PharmMap />} />
+        <Route path="dashboard" element={<Estatisticas />} />
         <Route path="medicamentos" element={<MedicamentosTable />} />
+        <Route path="about" element={<About />} />
       </Route>
     </Routes>
   );

@@ -1,4 +1,5 @@
-import Table from '../components/Table/Table';
+import Table from '../../components/Table/Table';
+import * as Style from "./styles";
 
 const data = [
   { patologia: 'Asma', medicamento: 'brometo de ipratrópio 0,02mg' },
@@ -44,23 +45,28 @@ const data = [
   { patologia: 'Incontinência', medicamento: 'fralda geriátrica' }
 ];
 
-const columns = [
-  {
-    accessorKey: 'patologia',
-    header: 'Patologia',
-  },
-  {
-    accessorKey: 'medicamento',
-    header: 'Medicamento',
-  }
-];
-
 const MedicamentosTable = () => {
-  
+  const columns = [
+    {
+      accessorKey: 'patologia',
+      header: 'Patologia',
+    },
+    {
+      accessorKey: 'medicamento',
+      header: 'Medicamento',
+    }
+  ];
+
   return (
-    <div className="h-[calc(100vh-72px)] py-5 px-10 flex flex-col items-center">
-        <Table data={data} columns={columns} />
-    </div>
+    <Style.Container>
+      <Style.Header>
+        <Style.Title>Lista de Medicamentos</Style.Title>
+        <Style.Description>
+        O Farmácia Popular disponibiliza medicamentos gratuitos para diabetes, asma, hipertensão, osteoporose, anticoncepção e, a partir de 10 de julho de 2024, também para dislipidemia (colesterol alto), rinite, doença de Parkinson e glaucoma. O programa também oferece medicamento de forma subsidiada para o tratamento de diabetes mellitus associada a doença cardiovascular, além de fraldas geriátricas para incontinência. Nesses casos, o Ministério da Saúde paga parte do valor dos produtos (até 90% do valor de referência tabelado) e o cidadão paga o restante, de acordo com o valor praticado pela farmácia. Ao todo, o Farmácia Popular contempla 12 indicações, incluindo absorventes higiênicos gratuitos paras as beneficiárias do Programa Dignidade Menstrual.
+        </Style.Description>
+      </Style.Header>
+      <Table data={data} columns={columns} />
+    </Style.Container>
   );
 };
 

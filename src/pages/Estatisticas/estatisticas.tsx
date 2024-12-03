@@ -1,11 +1,12 @@
 import 'chart.js/auto';
-import { Bar } from "react-chartjs-2"
-import { useFarmaciaContext } from "../hooks/useFarmacia";
+import { Bar } from "react-chartjs-2";
+import { useFarmaciaContext } from "../../hooks/useFarmacia";
+import * as Style from "./styles";
 
-const Dashboard = () => {
+const Estatisticas = () => {
   const { farmacias } = useFarmaciaContext();
 
-  const farmaciasPorEstado = farmacias.reduce((acc, farmacia) => {
+  const farmaciasPorEstado = farmacias.reduce((acc:any, farmacia) => {
     acc[farmacia.estado] = (acc[farmacia.estado] || 0) + 1;
     return acc;
   }, {});
@@ -32,17 +33,15 @@ const Dashboard = () => {
   };
 
   return (
-    <div className="h-[calc(100vh-72px)] py-5 px-10 flex justify-center items-center">
-      <div className="bg-gray-800 rounded-lg shadow-md w-full max-w-4xl p-8">
-        <div className="text-2xl font-semibold mb-6 text-center">
-          Estatísticas de Farmácias por Estado
-        </div>
-        <div className="h-full">
+    <Style.Container>
+      <Style.ChartWrapper>
+        <Style.Title>Estatísticas de Farmácias por Estado</Style.Title>
+        <Style.ChartContainer>
           <Bar data={data} options={options} />
-        </div>
-      </div>
-    </div>
-  )
-}
+        </Style.ChartContainer>
+      </Style.ChartWrapper>
+    </Style.Container>
+  );
+};
 
-export default Dashboard
+export default Estatisticas;
