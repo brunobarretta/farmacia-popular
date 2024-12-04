@@ -30,6 +30,7 @@ const PharmMap = () => {
     const mapboxToken = import.meta.env.VITE_MAPBOX_ACCESS_TOKEN;
     const mapRef = useRef(null);
     const [mylocation, setMylocation] = useState<Location | null>(null);
+    const [suggestions, setSuggestions] = useState([]);
 
     useEffect(() => {
         if (farmacias && farmacias.length) {
@@ -69,6 +70,32 @@ const PharmMap = () => {
         } else {
             alert("Não foi possível encontrar o endereço.");
         }
+    };
+
+    const handleInputChange = async (e) => {
+        const query = e.target.value;
+        setSearchQuery(query);
+
+        if (query.length > 2) {
+            const response = await fetch(
+                `https://api.mapbox.com/geocoding/v5/mapbox.places/${encodeURIComponent(
+                    query
+                )}.json?autocomplete=true&country=BR&access_token=${mapboxToken}`
+            );
+            const data = await response.json();
+            setSuggestions(data.features || []);
+        } else {
+            setSuggestions([]);
+        }
+    };
+
+    const handleSuggestionClick = (suggestion:any) => {
+        const [longitude, latitude] = suggestion.geometry.coordinates;
+        if (mapRef.current) {
+            mapRef.current.flyTo({ center: [longitude, latitude], zoom: 15 });
+        }
+        setSearchQuery(suggestion.place_name);
+        setSuggestions([]);
     };
 
     const handleLocateClick = () => {
@@ -123,6 +150,8 @@ const PharmMap = () => {
         });
     };
 
+    console.log(suggestions)
+
     return (
         <Styles.MapContainer>
             {!data && <Styles.LoadingContainer>
@@ -130,19 +159,51 @@ const PharmMap = () => {
             </Styles.LoadingContainer>}
 
             <Styles.SearchBar>
-                <input
-                    type="text"
-                    placeholder="Pesquisar endereço"
-                    className="search-input"
-                    onChange={(e) => setSearchQuery(e.target.value)}
-                />
-                <button className="search-button" onClick={handleSearch}>
-                    Buscar
-                    <i className="fas fa-search"></i>
-                </button>
-                <button className="locate-button" onClick={handleLocateClick}>
-                    <i className="fas fa-location-arrow"></i>
-                </button>
+                <Styles.SearchContainer>
+
+                    <Styles.Wrapper>
+                        <Styles.SearchInput
+                            type="text"
+                            placeholder="Pesquisar endereço"
+                            value={searchQuery}
+                            onChange={handleInputChange}
+                        />
+
+                        {searchQuery.length > 0 && 
+                            <Styles.ClearIcon 
+                                className="fa fa-times" 
+                                onClick={() => {
+                                    setSearchQuery("");
+                                    setSuggestions([]);
+                                }
+                                } 
+                            />
+                        }
+
+                        {suggestions.length > 0 && (
+                            <Styles.Suggestions>
+                                {suggestions.map((suggestion:any) => (
+                                    <Styles.SuggestionItem
+                                        key={suggestion.id}
+                                        onClick={() => handleSuggestionClick(suggestion)}
+                                    >
+                                        {suggestion.place_name}
+                                    </Styles.SuggestionItem>
+                                ))}
+                            </Styles.Suggestions>
+                        )}
+                    </Styles.Wrapper>
+   
+                    <Styles.SearchButton onClick={handleSearch}>
+                        <span>Buscar</span>
+                        <i className="fas fa-search"></i>
+                    </Styles.SearchButton>
+
+                    <Styles.LocateButton onClick={handleLocateClick}>
+                        <i className="fas fa-location-arrow"></i>
+                    </Styles.LocateButton>
+
+                </Styles.SearchContainer>
             </Styles.SearchBar>
 
             <Styles.BottomBar>
