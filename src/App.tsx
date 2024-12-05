@@ -5,7 +5,7 @@ import { Router } from './Router';
 import { theme } from "./styles/theme";
 
 const AppContainer = styled.div`
-  background-color: ${({ theme }) => theme.colors.primary};
+  background-color: ${({ theme }) => theme.colors.background};
   color: ${({ theme }) => theme.colors.secondary};
   font-family: ${({ theme }) => theme.fonts.body};
   min-height: 100vh;

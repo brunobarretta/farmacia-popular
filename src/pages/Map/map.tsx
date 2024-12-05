@@ -28,7 +28,7 @@ const PharmMap = () => {
     const [data, setData] = useState(null);
     const [searchQuery, setSearchQuery] = useState("");
     const mapboxToken = import.meta.env.VITE_MAPBOX_ACCESS_TOKEN;
-    const mapRef = useRef(null);
+    const mapRef = useRef<mapboxgl.Map | null>(null);
     const [mylocation, setMylocation] = useState<Location | null>(null);
     const [suggestions, setSuggestions] = useState([]);
 
@@ -80,7 +80,7 @@ const PharmMap = () => {
             const response = await fetch(
                 `https://api.mapbox.com/geocoding/v5/mapbox.places/${encodeURIComponent(
                     query
-                )}.json?autocomplete=true&country=BR&access_token=${mapboxToken}`
+                )}.json?autocomplete=true&country=BR&language=pt-BR&access_token=${mapboxToken}`
             );
             const data = await response.json();
             setSuggestions(data.features || []);

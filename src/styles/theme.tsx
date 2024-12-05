@@ -1,11 +1,10 @@
 export const theme = {
     colors: {
-      primary: "#1a202c", // Cor principal (exemplo: bg-gray-900)
-      secondary: "#cbd5e0", // Cor secundária (exemplo: text-gray-400)
-      accent: "#38bdf8", // Exemplo de cor de destaque (personalize conforme necessário)
-      background: "#f7fafc", // Cor de fundo clara (caso necessário)
+      primary: "#4842a3",
+      secondary: "#cbd5e0",
+      background: "#1a202c", 
     },
     fonts: {
-      body: "'Inter', sans-serif", // Fonte principal
+      body: "'Inter', sans-serif",
     },
   };

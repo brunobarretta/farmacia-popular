@@ -44,7 +44,6 @@ export const SearchInput = styled.input`
   padding: 10px 20px;
   height: 48px;
   width: 100%;
-  border: 1px solid #333;
   outline: none;
   color: #505050;
 `;
@@ -53,9 +52,9 @@ export const SearchButton = styled.button`
   border-radius: 0 25px 25px 0;
   padding: 0 16px 0 8px;
   height: 48px;
-  background-color: #333;
+  background-color: ${({ theme }) => theme.colors.primary};
   color: white;
-  border: 1px solid #333;
+  border: 1px solid white;
   display: flex;
   align-items: center;
   justify-content: center;
@@ -76,7 +75,7 @@ export const LocateButton = styled.button`
   margin-left: 8px;
   padding: 0 16px;
   height: 48px;
-  background-color: #333;
+  background-color: ${({ theme }) => theme.colors.primary};
   color: white;
   border-radius: 25px;
   display: flex;
@@ -126,7 +125,7 @@ export const BottomBar = styled.div`
   .info-box {
     padding: 10px 20px;
     height: 48px;
-    background-color: #e53935;
+    background-color: ${({ theme }) => theme.colors.primary};
     color: white;
     border-radius: 25px;
     display: flex;

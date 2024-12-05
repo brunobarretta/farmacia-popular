@@ -3,8 +3,8 @@ import profile from "../../assets/img/profile.jpeg"
 
 const Container = styled.div`
   padding: 40px;
-  background-color: ${({ theme }) => theme.colors.background || "#f7fafc"};
-  color: ${({ theme }) => theme.colors.primary || "#1a202c"};
+  background-color: ${({ theme }) => theme.colors.background };
+  color: ${({ theme }) => theme.colors.secondary};
   min-height: calc(100vh - 72px);
   display: flex;
   flex-direction: column;
@@ -58,14 +58,14 @@ const Button = styled.a`
   transition: background-color 0.3s ease;
 
   &:hover {
-    background-color: ${({ theme }) => theme.colors.secondary || "#cbd5e0"};
+    background-color: ${({ theme }) => theme.colors.secondary};
   }
 `;
 
 const ContactEmail = styled.p`
   margin-top: 20px;
   font-size: 1rem;
-  color: ${({ theme }) => theme.colors.primary || "#1a202c"};
+  color: ${({ theme }) => theme.colors.secondary};
 `;
 
 const About = () => {
