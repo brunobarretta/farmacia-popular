@@ -7,7 +7,7 @@ Versão web do meu TCC!
 
 - [React](https://reactjs.org/): Biblioteca JavaScript para construção de interfaces de usuário.
 - [Vite](https://vitejs.dev/): Vite é um framework de desenvolvimento web extremamente rápido para projetos em React.
-- [Tailwind CSS](https://tailwindcss.com/): Uma estrutura de design de utilitários CSS de baixo nível.
+- [Styled Components](https://styled-components.com/): Uma biblioteca para escrever estilos CSS diretamente nos componentes JavaScript, permitindo estilos dinâmicos e maior modularidade.
 - [Context API](https://reactjs.org/docs/context.html): API do React para gerenciar o estado global da aplicação.
 
 ## Pré-requisitos

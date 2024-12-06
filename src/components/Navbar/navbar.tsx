@@ -1,75 +1,62 @@
 import { useState } from "react";
 import { NavLink } from "react-router-dom";
+import * as Styled from "./styles";
 
 const Navbar = () => {
   const [isOpen, setIsOpen] = useState(false);
 
   return (
     <>
-      <header className="bg-gray-800 md:sticky top-0 z-20">
-        <div className="container mx-auto flex flex-wrap p-5 md:flex-row items-center left">
-          <button
-            className="text-white md:hidden mr-4"
-            onClick={() => setIsOpen(!isOpen)}
-          >
+      <Styled.Header>
+        <Styled.Container>
+          <Styled.MenuButton onClick={() => setIsOpen(!isOpen)}>
             ☰
-          </button>
+          </Styled.MenuButton>
 
-          <div className="title-font font-medium text-white">
-            <NavLink to="/" className="ml-3 text-xl">
-              Busca Farmácia Popular
-            </NavLink>
-          </div>
+          <Styled.Title>
+            <NavLink to="/">Busca Farmácia Popular</NavLink>
+          </Styled.Title>
 
-          <nav className="hidden md:flex md:mr-auto md:ml-4 md:py-1 md:pl-4 md:border-l md:border-gray-700 flex-wrap items-center text-base justify-center">
-            <NavLink to="/" className="mr-5 hover:text-white">
+          <Styled.Nav>
+            <NavLink to="/" className="nav-item">
               Mapa
             </NavLink>
-
-            <NavLink to="/medicamentos" className="mr-5 hover:text-white">
+            <NavLink to="/medicamentos" className="nav-item">
               Lista Medicamentos
             </NavLink>
-
-            <NavLink to="/dashboard" className="mr-5 hover:text-white">
+            <NavLink to="/dashboard" className="nav-item">
               Estatísticas
             </NavLink>
-            <NavLink to="/about" className="mr-5 hover:text-white">
+            <NavLink to="/about" className="nav-item">
               Sobre
             </NavLink>
-          </nav>
-        </div>
-      </header>
+          </Styled.Nav>
+        </Styled.Container>
+      </Styled.Header>
 
       {isOpen && (
-        <div className="fixed inset-0 flex z-30">
-          <div
-            className="fixed inset-0 bg-black opacity-50"
-            onClick={() => setIsOpen(false)}
-          ></div>
-
-          <div className="relative bg-gray-800 w-64 h-full p-5">
-            <button
-              className="text-white mb-4"
-              onClick={() => setIsOpen(false)}
-            >
+        <Styled.MobileMenu>
+          <Styled.Overlay onClick={() => setIsOpen(false)} />
+          <Styled.MobileNav>
+            <Styled.CloseButton onClick={() => setIsOpen(false)}>
               Fechar
-            </button>
-            <nav className="flex flex-col">
-              <NavLink to="/" className="mb-5 hover:text-white">
+            </Styled.CloseButton>
+            <Styled.NavMobile>
+              <NavLink to="/" className="mobile-item">
                 Mapa
               </NavLink>
-              <NavLink to="/dashboard" className="mb-5 hover:text-white">
+              <NavLink to="/dashboard" className="mobile-item">
                 Dashboard
               </NavLink>
-              <NavLink to="/medicamentos" className="mb-5 hover:text-white">
+              <NavLink to="/medicamentos" className="mobile-item">
                 Lista Medicamentos
               </NavLink>
-              <NavLink to="/about" className="mb-5 hover:text-white">
+              <NavLink to="/about" className="mobile-item">
                 Sobre
               </NavLink>
-            </nav>
-          </div>
-        </div>
+            </Styled.NavMobile>
+          </Styled.MobileNav>
+        </Styled.MobileMenu>
       )}
     </>
   );

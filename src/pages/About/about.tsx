@@ -50,7 +50,7 @@ const LinksContainer = styled.div`
 const Button = styled.a`
   text-decoration: none;
   padding: 10px 20px;
-  background-color: #0a66c2;
+  background-color: ${({ theme }) => theme.colors.primary};
   color: #fff;
   border-radius: 4px;
   font-size: 1rem;
@@ -58,7 +58,7 @@ const Button = styled.a`
   transition: background-color 0.3s ease;
 
   &:hover {
-    background-color: ${({ theme }) => theme.colors.secondary};
+    background-color: #6e64f8;
   }
 `;
 
