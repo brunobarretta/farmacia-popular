@@ -1,23 +1,23 @@
 import { useState } from "react";
 import { NavLink } from "react-router-dom";
-import * as Styled from "./styles";
+import * as Elements from "./styles";
 
 const Navbar = () => {
   const [isOpen, setIsOpen] = useState(false);
 
   return (
     <>
-      <Styled.Header>
-        <Styled.Container>
-          <Styled.MenuButton onClick={() => setIsOpen(!isOpen)}>
+      <Elements.Header>
+        <Elements.Container>
+          <Elements.MenuButton onClick={() => setIsOpen(!isOpen)}>
             ☰
-          </Styled.MenuButton>
+          </Elements.MenuButton>
 
-          <Styled.Title>
+          <Elements.Title>
             <NavLink to="/">Busca Farmácia Popular</NavLink>
-          </Styled.Title>
+          </Elements.Title>
 
-          <Styled.Nav>
+          <Elements.Nav>
             <NavLink to="/" className="nav-item">
               Mapa
             </NavLink>
@@ -30,18 +30,18 @@ const Navbar = () => {
             <NavLink to="/about" className="nav-item">
               Sobre
             </NavLink>
-          </Styled.Nav>
-        </Styled.Container>
-      </Styled.Header>
+          </Elements.Nav>
+        </Elements.Container>
+      </Elements.Header>
 
       {isOpen && (
-        <Styled.MobileMenu>
-          <Styled.Overlay onClick={() => setIsOpen(false)} />
-          <Styled.MobileNav>
-            <Styled.CloseButton onClick={() => setIsOpen(false)}>
+        <Elements.MobileMenu>
+          <Elements.Overlay onClick={() => setIsOpen(false)} />
+          <Elements.MobileNav>
+            <Elements.CloseButton onClick={() => setIsOpen(false)}>
               Fechar
-            </Styled.CloseButton>
-            <Styled.NavMobile>
+            </Elements.CloseButton>
+            <Elements.NavMobile>
               <NavLink to="/" className="mobile-item">
                 Mapa
               </NavLink>
@@ -54,9 +54,9 @@ const Navbar = () => {
               <NavLink to="/about" className="mobile-item">
                 Sobre
               </NavLink>
-            </Styled.NavMobile>
-          </Styled.MobileNav>
-        </Styled.MobileMenu>
+            </Elements.NavMobile>
+          </Elements.MobileNav>
+        </Elements.MobileMenu>
       )}
     </>
   );

@@ -1,7 +1,8 @@
 import 'chart.js/auto';
 import { Bar } from "react-chartjs-2";
 import { useFarmaciaContext } from "../../hooks/useFarmacia";
-import * as Style from "./styles";
+import * as Elements from "./styles";
+import { Helmet } from 'react-helmet';
 
 const Estatisticas = () => {
   const { farmacias } = useFarmaciaContext();
@@ -33,14 +34,21 @@ const Estatisticas = () => {
   };
 
   return (
-    <Style.Container>
-      <Style.ChartWrapper>
-        <Style.Title>Estatísticas de Farmácias por Estado</Style.Title>
-        <Style.ChartContainer>
-          <Bar data={data} options={options} />
-        </Style.ChartContainer>
-      </Style.ChartWrapper>
-    </Style.Container>
+    <>
+      <Helmet>
+        <meta name="description" content="Veja as estatísticas de farmácias por estado através de um gráfico." />
+        <title>Estatísticas de Farmácias por Estado</title>
+      </Helmet>
+
+      <Elements.Container>
+        <Elements.ChartWrapper>
+          <Elements.Title>Estatísticas de Farmácias por Estado</Elements.Title>
+          <Elements.ChartContainer>
+            <Bar data={data} options={options} />
+          </Elements.ChartContainer>
+        </Elements.ChartWrapper>
+      </Elements.Container>
+    </>
   );
 };
 

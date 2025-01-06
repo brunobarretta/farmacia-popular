@@ -1,13 +1,13 @@
-import * as Style from "./styles"
+import * as Elements from "./styles"
 
 const Loading = () => {
 
     return (
-        <Style.Loader>
-            <Style.Dot />
-            <Style.Dot />
-            <Style.Dot />
-        </Style.Loader>
+        <Elements.Loader>
+            <Elements.Dot />
+            <Elements.Dot />
+            <Elements.Dot />
+        </Elements.Loader>
     )
 }
 

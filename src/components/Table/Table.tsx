@@ -52,15 +52,23 @@ const Table = ({ data, columns }: any) => {
               ))}
             </Elements.Thead>
             <tbody>
-              {table.getRowModel().rows.map((row) => (
-                <Elements.Tr key={row.id}>
-                  {row.getVisibleCells().map((cell) => (
-                    <Elements.Td key={cell.id}>
-                      {flexRender(cell.column.columnDef.cell, cell.getContext())}
-                    </Elements.Td>
-                  ))}
+              {table.getRowModel().rows.length > 0 ? (
+                table.getRowModel().rows.map((row) => (
+                  <Elements.Tr key={row.id}>
+                    {row.getVisibleCells().map((cell) => (
+                      <Elements.Td key={cell.id}>
+                        {flexRender(cell.column.columnDef.cell, cell.getContext())}
+                      </Elements.Td>
+                    ))}
+                  </Elements.Tr>
+                ))
+              ) : (
+                <Elements.Tr>
+                  <Elements.Td colSpan={columns.length} style={{ textAlign: 'center' }}>
+                    Nenhum resultado encontrado.
+                  </Elements.Td>
                 </Elements.Tr>
-              ))}
+              )}
             </tbody>
           </Elements.StyledTable>
         </Elements.TableWrapper>

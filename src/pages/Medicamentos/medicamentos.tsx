@@ -1,5 +1,6 @@
 import Table from '../../components/Table/table';
-import * as Style from "./styles";
+import * as Elements from "./styles";
+import { Helmet } from 'react-helmet';
 
 const data = [
   { patologia: 'Asma', medicamento: 'brometo de ipratrópio 0,02mg' },
@@ -58,15 +59,25 @@ const MedicamentosTable = () => {
   ];
 
   return (
-    <Style.Container>
-      <Style.Header>
-        <Style.Title>Lista de Medicamentos</Style.Title>
-        <Style.Description>
-        O Farmácia Popular disponibiliza medicamentos gratuitos para diabetes, asma, hipertensão, osteoporose, anticoncepção e, a partir de 10 de julho de 2024, também para dislipidemia (colesterol alto), rinite, doença de Parkinson e glaucoma. O programa também oferece medicamento de forma subsidiada para o tratamento de diabetes mellitus associada a doença cardiovascular, além de fraldas geriátricas para incontinência. Nesses casos, o Ministério da Saúde paga parte do valor dos produtos (até 90% do valor de referência tabelado) e o cidadão paga o restante, de acordo com o valor praticado pela farmácia. Ao todo, o Farmácia Popular contempla 12 indicações, incluindo absorventes higiênicos gratuitos paras as beneficiárias do Programa Dignidade Menstrual.
-        </Style.Description>
-      </Style.Header>
-      <Table data={data} columns={columns} />
-    </Style.Container>
+    <>
+      <Helmet>
+        <meta name="description" content="Veja a lista completa de medicamentos do programa Farmácia Popular do governo. Acesse informações detalhadas sobre os medicamentos gratuitos disponíveis para você." />
+        <title>Farmácia Popular - Medicamentos</title>
+      </Helmet>
+
+      <Elements.Container>
+        <Elements.Header>
+          <Elements.Title>Farmácia Popular - Medicamentos</Elements.Title>
+          <Elements.Description>
+            O Programa Farmácia Popular oferece medicamentos gratuitos ou com descontos para condições crônicas como diabetes, asma, hipertensão, osteoporose, anticoncepção e mais. O governo cobre até 90% do valor de medicamentos como sinvastatina para dislipidemia, alendronato para osteoporose e insulina para diabetes. Além disso, oferece fraldas geriátricas para incontinência.
+            <br />
+            <br />
+            Qualquer pessoa com receita médica válida pode retirar os medicamentos gratuitamente. Os beneficiários do Bolsa Família têm acesso a todos os medicamentos sem custo adicional. O programa também cobre a retirada de medicamentos por representantes legais em caso de pacientes impossibilitados de ir à farmácia.
+          </Elements.Description>
+        </Elements.Header>
+        <Table data={data} columns={columns} />
+      </Elements.Container>
+    </>
   );
 };
 

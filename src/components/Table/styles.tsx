@@ -3,7 +3,7 @@ import { DebouncedInput } from './input';
 
 
 export const Container = styled.div`
-  height: 500px;
+  max-height: 500px;
   width: 100%;
   display: flex;
   flex-direction: column;
@@ -46,6 +46,8 @@ export const TableWrapper = styled.div`
   background-color: #ffffff;
   border-radius: 8px;
   box-shadow: 0 2px 6px rgba(0, 0, 0, 0.1);
+  padding: 0; 
+  margin: 0;
 `;
 
 export const StyledTable = styled.table`

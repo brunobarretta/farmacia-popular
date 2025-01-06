@@ -1,10 +1,11 @@
 import { useEffect, useRef, useState } from "react";
 import { useFarmaciaContext } from "../../hooks/useFarmacia";
-import * as Styles from "./styles";
+import * as Elements from "./styles";
 import MapDisplay from "../../components/Map/Map";
 import '@fortawesome/fontawesome-free/css/all.min.css';
 import { GeoJSONSource } from "react-map-gl";
 import Loading from "../../components/Loading/loading";
+import { Helmet } from 'react-helmet';
 
 interface Farmacia {
     _id: string,
@@ -150,71 +151,74 @@ const PharmMap = () => {
         });
     };
 
-    console.log(suggestions)
-
     return (
-        <Styles.MapContainer>
-            {!data && <Styles.LoadingContainer>
-                <Loading />
-            </Styles.LoadingContainer>}
+        <>
+            <Helmet>
+                <meta name="description" content="Encontre farmácias populares participantes do programa do governo no mapa interativo. Localize facilmente farmácias próximas a você." />
+                <title>Mapa de Farmácias Populares</title>
+            </Helmet>
+            <Elements.MapContainer>
+                {!data && <Elements.LoadingContainer>
+                    <Loading />
+                </Elements.LoadingContainer>}
 
-            <Styles.SearchBar>
-                <Styles.SearchContainer>
+                <Elements.SearchBar>
+                    <Elements.SearchContainer>
 
-                    <Styles.Wrapper>
-                        <Styles.SearchInput
-                            type="text"
-                            placeholder="Pesquisar endereço"
-                            value={searchQuery}
-                            onChange={handleInputChange}
-                        />
+                        <Elements.Wrapper>
+                            <Elements.SearchInput
+                                type="text"
+                                placeholder="Pesquisar endereço"
+                                value={searchQuery}
+                                onChange={handleInputChange}
+                                />
 
-                        {searchQuery.length > 0 && 
-                            <Styles.ClearIcon 
+                            {searchQuery.length > 0 && 
+                                <Elements.ClearIcon 
                                 className="fa fa-times" 
                                 onClick={() => {
                                     setSearchQuery("");
                                     setSuggestions([]);
                                 }
-                                } 
+                            } 
                             />
                         }
 
-                        {suggestions.length > 0 && (
-                            <Styles.Suggestions>
-                                {suggestions.map((suggestion:any) => (
-                                    <Styles.SuggestionItem
+                            {suggestions.length > 0 && (
+                                <Elements.Suggestions>
+                                    {suggestions.map((suggestion:any) => (
+                                        <Elements.SuggestionItem
                                         key={suggestion.id}
-                                        onClick={() => handleSuggestionClick(suggestion)}
-                                    >
-                                        {suggestion.place_name}
-                                    </Styles.SuggestionItem>
-                                ))}
-                            </Styles.Suggestions>
-                        )}
-                    </Styles.Wrapper>
-   
-                    <Styles.SearchButton onClick={handleSearch}>
-                        <span>Buscar</span>
-                        <i className="fas fa-search"></i>
-                    </Styles.SearchButton>
+                                            onClick={() => handleSuggestionClick(suggestion)}
+                                            >
+                                            {suggestion.place_name}
+                                        </Elements.SuggestionItem>
+                                    ))}
+                                </Elements.Suggestions>
+                            )}
+                        </Elements.Wrapper>
+    
+                        <Elements.SearchButton onClick={handleSearch}>
+                            <span>Buscar</span>
+                            <i className="fas fa-search"></i>
+                        </Elements.SearchButton>
 
-                    <Styles.LocateButton onClick={handleLocateClick}>
-                        <i className="fas fa-location-arrow"></i>
-                    </Styles.LocateButton>
+                        <Elements.LocateButton onClick={handleLocateClick}>
+                            <i className="fas fa-location-arrow"></i>
+                        </Elements.LocateButton>
 
-                </Styles.SearchContainer>
-            </Styles.SearchBar>
+                    </Elements.SearchContainer>
+                </Elements.SearchBar>
 
-            <Styles.BottomBar>
-                <div className="info-box">
-                    <i className="fa-solid fa-location-dot"></i>
-                    {`${farmacias.length.toLocaleString()} Farmácias Credenciadas`}
-                </div>
-            </Styles.BottomBar>
+                <Elements.BottomBar>
+                    <div className="info-box">
+                        <i className="fa-solid fa-location-dot"></i>
+                        {`${farmacias.length.toLocaleString()} Farmácias Credenciadas`}
+                    </div>
+                </Elements.BottomBar>
 
-            {mylocation ? 
-                <MapDisplay
+                {mylocation ? 
+                    <MapDisplay
                     ref={mapRef}
                     data={data}
                     mapboxToken={mapboxToken}
@@ -224,10 +228,11 @@ const PharmMap = () => {
                         zoom: 12,
                     }}
                     onClick={onClick}
-                /> : null
-            }
+                    /> : null
+                }
 
-        </Styles.MapContainer>
+            </Elements.MapContainer>
+        </>
     );
 };
 
