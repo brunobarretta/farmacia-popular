@@ -49,18 +49,27 @@ export const Nav = styled.nav`
   @media (min-width: 768px) {
     display: flex;
     flex-wrap: wrap;
+    align-items: center;
     justify-content: center;
     padding-left: 20px;
     border-left: 1px solid white;
-
+    
     .nav-item {
-      margin-right: 20px;
+      margin-right: 10px;
       color: #ffffff;
       text-decoration: none;
+      padding: 5px 10px;
 
       &:hover {
         color: #ffffffcc;
       }
+    }
+
+    .nav-item.active,
+    .mobile-item.active {
+      background-color: #7979ff;
+      border-radius: 5px;
+      padding: 5px 10px;
     }
   }
 `;
@@ -96,6 +105,14 @@ export const MobileNav = styled.div`
     &:hover {
       color: #ffffffcc;
     }
+  }
+
+  .nav-item.active,
+  .mobile-item.active {
+    background-color: #7979ff;
+    padding: 5px 10px;
+    width: fit-content;
+    border-radius: 5px;
   }
 `;
 

@@ -7,7 +7,7 @@ const About = () => {
     <>
       <Helmet>
         <meta name="description" content="Saiba mais sobre o desenvolvedor da aplicação e o propósito do site que facilita o acesso a farmácias populares e medicamentos gratuitos." />
-        <title>Sobre - Farmácia Popular</title>
+        <title>Sobre o projeto Farmácia Popular</title>
       </Helmet>
 
       <Elements.Container>

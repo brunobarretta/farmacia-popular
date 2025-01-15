@@ -1,78 +1,92 @@
+import { useEffect, useState } from 'react';
 import Table from '../../components/Table/table';
 import * as Elements from "./styles";
 import { Helmet } from 'react-helmet';
+import axios from 'axios';
 
-const data = [
-  { patologia: 'Asma', medicamento: 'brometo de ipratrópio 0,02mg' },
-  { patologia: 'Asma', medicamento: 'brometo de ipratrópio 0,25mg' },
-  { patologia: 'Asma', medicamento: 'dipropionato de beclometasona 200mcg' },
-  { patologia: 'Asma', medicamento: 'dipropionato de beclometasona 250mcg' },
-  { patologia: 'Asma', medicamento: 'dipropionato de beclometasona 50mcg' },
-  { patologia: 'Asma', medicamento: 'sulfato de salbutamol 100mcg' },
-  { patologia: 'Asma', medicamento: 'sulfato de salbutamol 5mg' },
-  { patologia: 'Diabetes', medicamento: 'cloridrato de metformina 500mg' },
-  { patologia: 'Diabetes', medicamento: 'cloridrato de metformina 500mg - ação prolongada' },
-  { patologia: 'Diabetes', medicamento: 'cloridrato de metformina 850mg' },
-  { patologia: 'Diabetes', medicamento: 'glibenclamida 5mg' },
-  { patologia: 'Diabetes', medicamento: 'insulina humana regular 100ui/ml' },
-  { patologia: 'Diabetes', medicamento: 'insulina humana 100ui/ml' },
-  { patologia: 'Hipertensão', medicamento: 'atenolol 25mg' },
-  { patologia: 'Hipertensão', medicamento: 'besilato de anlodipino 5 mg' },
-  { patologia: 'Hipertensão', medicamento: 'captopril 25mg' },
-  { patologia: 'Hipertensão', medicamento: 'cloridrato de propranolol 40mg' },
-  { patologia: 'Hipertensão', medicamento: 'hidroclorotiazida 25mg' },
-  { patologia: 'Hipertensão', medicamento: 'losartana potássica 50mg' },
-  { patologia: 'Hipertensão', medicamento: 'maleato de enalapril 10mg' },
-  { patologia: 'Hipertensão', medicamento: 'espironolactona 25 mg' },
-  { patologia: 'Hipertensão', medicamento: 'furosemida 40 mg' },
-  { patologia: 'Hipertensão', medicamento: 'succinato de metoprolol 25 mg' },
-  { patologia: 'Anticoncepção', medicamento: 'acetato de medroxiprogesterona 150mg' },
-  { patologia: 'Anticoncepção', medicamento: 'etinilestradiol 0,03mg + levonorgestrel 0,15mg' },
-  { patologia: 'Anticoncepção', medicamento: 'noretisterona 0,35mg' },
-  { patologia: 'Anticoncepção', medicamento: 'valerato de estradiol 5mg + enantato de noretisterona 50mg' },
-  { patologia: 'Osteoporose', medicamento: 'alendronato de sódio 70mg' },
-  { patologia: 'Dislipidemia', medicamento: 'sinvastatina 10mg' },
-  { patologia: 'Dislipidemia', medicamento: 'sinvastatina 20mg' },
-  { patologia: 'Dislipidemia', medicamento: 'sinvastatina 40mg' },
-  { patologia: 'Doença de Parkinson', medicamento: 'carbidopa 25mg + levodopa 250mg' },
-  { patologia: 'Doença de Parkinson', medicamento: 'cloridrato de benserazida 25mg + levodopa 100mg' },
-  { patologia: 'Glaucoma', medicamento: 'maleato de timolol 2,5mg' },
-  { patologia: 'Glaucoma', medicamento: 'maleato de timolol 5mg' },
-  { patologia: 'Rinite', medicamento: 'budesonida 32mcg' },
-  { patologia: 'Rinite', medicamento: 'budesonida 50mcg' },
-  { patologia: 'Rinite', medicamento: 'dipropionato de beclometasona 50mcg/dose' },
-  { patologia: 'Dignidade Menstrual', medicamento: 'absorvente higiênico' },
-  { patologia: 'Diabetes Mellitus + Doença Cardiovascular', medicamento: 'dapagliflozina 10 mg' },
-  { patologia: 'Incontinência', medicamento: 'fralda geriátrica' }
-];
 
 const MedicamentosTable = () => {
+  const [data, setData] = useState([]);
+  const [isLoading, setIsLoading] = useState(true);
+
   const columns = [
+    {
+      accessorKey: 'tipo',
+      header: 'Modalidade',
+    },
     {
       accessorKey: 'patologia',
       header: 'Patologia',
     },
     {
       accessorKey: 'medicamento',
-      header: 'Medicamento',
-    }
+      header: 'Princípios ativos / insumos',
+    },
   ];
+
+  useEffect(() => {
+    const fetchMedicamentos = async () => {
+      try {
+        const response = await axios.get('http://localhost:3000/api/medicamentos');
+        setData(response.data);
+      } catch (err) {
+        console.error(err);
+      } finally {
+        setIsLoading(false);
+      }
+    };
+
+    fetchMedicamentos();
+  }, []);
 
   return (
     <>
       <Helmet>
         <meta name="description" content="Veja a lista completa de medicamentos do programa Farmácia Popular do governo. Acesse informações detalhadas sobre os medicamentos gratuitos disponíveis para você." />
-        <title>Farmácia Popular - Medicamentos</title>
+        <title>Medicamentos das Farmácias Populares</title>
       </Helmet>
 
       <Elements.Container>
         <Elements.Header>
           <Elements.Title>Farmácia Popular - Medicamentos</Elements.Title>
           <Elements.Description>
-            O Programa Farmácia Popular oferece medicamentos gratuitos ou com descontos para condições crônicas como diabetes, asma, hipertensão, osteoporose, anticoncepção e mais. O governo cobre até 90% do valor de medicamentos como sinvastatina para dislipidemia, alendronato para osteoporose e insulina para diabetes. Além disso, oferece fraldas geriátricas para incontinência.
-            <br />
-            <br />
-            Qualquer pessoa com receita médica válida pode retirar os medicamentos gratuitamente. Os beneficiários do Bolsa Família têm acesso a todos os medicamentos sem custo adicional. O programa também cobre a retirada de medicamentos por representantes legais em caso de pacientes impossibilitados de ir à farmácia.
+            <span>💊 <strong>Medicamentos Gratuitos e com Desconto</strong></span>
+            <p>
+              O <strong>Programa Farmácia Popular</strong> oferece medicamentos gratuitos ou com descontos para 
+              condições crônicas como <em>diabetes, asma, hipertensão, osteoporose</em> e muito mais. 
+              Beneficiários do <strong>Bolsa Família</strong> têm acesso a todos os medicamentos <u>sem custo adicional</u>.
+            </p>
+            <p>
+              Exemplos incluem <strong>sinvastatina</strong> para dislipidemia, <strong>alendronato</strong> para osteoporose e <strong>insulina</strong> para diabetes. 
+              Também estão disponíveis fraldas geriátricas para incontinência.
+            </p>
+            <p>
+              Qualquer pessoa com receita médica válida pode retirar medicamentos. 
+              Representantes legais também podem retirar em nome de pacientes impossibilitados de ir à farmácia.
+            </p>
+            <Elements.Links>
+              <strong>🔗 Links úteis:</strong>
+              <ul>
+                <li>
+                  <a 
+                    href="https://www.gov.br/saude/pt-br/composicao/sectics/farmacia-popular" 
+                    target="_blank" 
+                    rel="noopener noreferrer"
+                  >
+                    Sobre o Programa Farmácia Popular
+                  </a>
+                </li>
+                <li>
+                  <a 
+                    href="https://www.gov.br/saude/pt-br/composicao/sectics/farmacia-popular/arquivos/elenco-de-medicamentos-e-insumos.pdf" 
+                    target="_blank" 
+                    rel="noopener noreferrer"
+                  >
+                    Lista de Medicamentos e Insumos
+                  </a>
+                </li>
+              </ul>
+            </Elements.Links>
           </Elements.Description>
         </Elements.Header>
         <Table data={data} columns={columns} />

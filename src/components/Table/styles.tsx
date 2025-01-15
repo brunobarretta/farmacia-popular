@@ -87,7 +87,5 @@ export const Tr = styled.tr`
 `;
 
 export const Footer = styled.div`
-  margin-top: auto;
-  padding: 1rem 0;
   font-size: 14px
 `;

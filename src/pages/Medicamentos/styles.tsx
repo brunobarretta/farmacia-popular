@@ -9,17 +9,66 @@ export const Container = styled.div`
 `;
 
 export const Header = styled.div`
-  text-align: center;
   margin-bottom: 20px;
   max-width: 960px;
 `;
 
 export const Title = styled.h1`
-  font-size: 32px; 
+  text-align: center;
+  font-size: 32px;
   font-weight: bold;
+  margin-bottom: 30px;
+  margin-top: 30px;
+  color: #f7fafc;
 `;
 
-export const Description = styled.p`
+export const Description = styled.div`
   text-align: start;
-  margin: 20px 0px;
+  line-height: 1.6;
+  font-size: 16px;
+  color: #f7fafc;
+
+  span {
+    font-size: 18px;
+    font-weight: bold;
+    display: block;
+    margin-bottom: 10px;
+    color: #222;
+  }
+
+  ul {
+    margin-top: 10px;
+    padding-left: 20px;
+    list-style: disc;
+
+    li a {
+      color: #7979ff;
+      text-decoration: none;
+
+      &:hover {
+        text-decoration: underline;
+      }
+    }
+  }
+
+  p {
+    margin: 10px 0;
+  }
+
+  strong {
+    color: #7979ff;
+  }
+
+  em {
+    font-style: italic;
+    color: #7979ff;
+  }
+
+  u {
+    text-decoration: underline;
+  }
 `;
+
+export const Links = styled.div`
+  margin: 30px 0px;
+`

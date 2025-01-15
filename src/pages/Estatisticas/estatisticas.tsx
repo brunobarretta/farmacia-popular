@@ -37,7 +37,7 @@ const Estatisticas = () => {
     <>
       <Helmet>
         <meta name="description" content="Veja as estatísticas de farmácias por estado através de um gráfico." />
-        <title>Estatísticas de Farmácias por Estado</title>
+        <title>Estatísticas de Farmácias Populares por Estado</title>
       </Helmet>
 
       <Elements.Container>
