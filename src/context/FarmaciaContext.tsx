@@ -21,9 +21,10 @@ interface FarmaciaContextType {
 export const FarmaciaContext = createContext<FarmaciaContextType | undefined>(undefined);
 
 export const FarmaciaProvider: React.FC<{ children: React.ReactNode }> = ({ children }) => {
+  const api = import.meta.env.VITE_API;
   const [farmacias, setFarmacias] = useState<Farmacia[]>([]);
   const [loading, setLoading] = useState(true);
-  const baseURL = "http://localhost:3000/api/farmacias";
+  const baseURL = `${api}/api/farmacias`;
 
 
   useEffect(() => {

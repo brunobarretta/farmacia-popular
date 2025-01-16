@@ -23,7 +23,7 @@ const About = () => {
             src={profile}
             alt="Bruno Barretta"
           />
-          <Elements.Title>Bruno Barretta</Elements.Title>
+          <Elements.Name>Bruno Barretta</Elements.Name>
           <Elements.LinksContainer>
             <Elements.Button href="https://www.linkedin.com/in/bruno-barretta" target="_blank">
               LinkedIn
@@ -32,7 +32,7 @@ const About = () => {
               GitHub
             </Elements.Button>
           </Elements.LinksContainer>
-          <Elements.ContactEmail>Contato: bruno.barretta@outlook.com</Elements.ContactEmail>
+          <Elements.ContactEmail>bruno.barretta@outlook.com</Elements.ContactEmail>
         </Elements.ProfileSection>
       </Elements.Container>
     </>

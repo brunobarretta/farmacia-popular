@@ -1,10 +1,10 @@
 import styled from "styled-components";
 
 export const Container = styled.div`
-  padding: 40px;
+  height: 100%;
+  padding: 20px 40px;
   background-color: ${({ theme }) => theme.colors.background };
   color: ${({ theme }) => theme.colors.secondary};
-  min-height: calc(100vh - 72px);
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -12,9 +12,12 @@ export const Container = styled.div`
 `;
 
 export const Title = styled.h1`
-  font-size: 2rem;
+  text-align: center;
+  font-size: 32px;
   font-weight: bold;
-  margin-bottom: 16px;
+  margin-bottom: 30px;
+  margin-top: 30px;
+  color: ${({ theme }) => theme.colors.white};
 `;
 
 export const Description = styled.p`
@@ -23,6 +26,7 @@ export const Description = styled.p`
   max-width: 600px;
   margin-bottom: 32px;
   line-height: 1.6;
+  color: ${({ theme }) => theme.colors.white};
 `;
 
 export const ProfileSection = styled.div`
@@ -57,12 +61,19 @@ export const Button = styled.a`
   transition: background-color 0.3s ease;
 
   &:hover {
-    background-color: #6e64f8;
+    background-color: ${({ theme }) => theme.colors.lightPurple};
   }
 `;
 
 export const ContactEmail = styled.p`
   margin-top: 20px;
   font-size: 1rem;
-  color: ${({ theme }) => theme.colors.secondary};
+  color: ${({ theme }) => theme.colors.white};
+`;
+
+export const Name = styled.div`
+  text-align: center;
+  font-size: 25px;
+  font-weight: bold;
+  color: ${({ theme }) => theme.colors.white};
 `;

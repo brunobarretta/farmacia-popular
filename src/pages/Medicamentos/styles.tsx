@@ -19,14 +19,14 @@ export const Title = styled.h1`
   font-weight: bold;
   margin-bottom: 30px;
   margin-top: 30px;
-  color: #f7fafc;
+  color: ${({ theme }) => theme.colors.white};
 `;
 
 export const Description = styled.div`
   text-align: start;
   line-height: 1.6;
   font-size: 16px;
-  color: #f7fafc;
+  color: ${({ theme }) => theme.colors.white};
 
   span {
     font-size: 18px;
@@ -42,7 +42,7 @@ export const Description = styled.div`
     list-style: disc;
 
     li a {
-      color: #7979ff;
+      color: ${({ theme }) => theme.colors.lightPurple};
       text-decoration: none;
 
       &:hover {
@@ -56,12 +56,12 @@ export const Description = styled.div`
   }
 
   strong {
-    color: #7979ff;
+    color: ${({ theme }) => theme.colors.lightPurple};
   }
 
   em {
     font-style: italic;
-    color: #7979ff;
+    color: ${({ theme }) => theme.colors.lightPurple};
   }
 
   u {

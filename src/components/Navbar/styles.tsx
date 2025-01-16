@@ -67,7 +67,7 @@ export const Nav = styled.nav`
 
     .nav-item.active,
     .mobile-item.active {
-      background-color: #7979ff;
+      background-color: ${({ theme }) => theme.colors.lightPurple};
       border-radius: 5px;
       padding: 5px 10px;
     }
@@ -109,7 +109,7 @@ export const MobileNav = styled.div`
 
   .nav-item.active,
   .mobile-item.active {
-    background-color: #7979ff;
+    background-color: ${({ theme }) => theme.colors.lightPurple};
     padding: 5px 10px;
     width: fit-content;
     border-radius: 5px;

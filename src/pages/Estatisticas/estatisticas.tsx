@@ -26,9 +26,30 @@ const Estatisticas = () => {
   };
 
   const options = {
+    plugins: {  
+      legend: {
+        labels: {
+          color: "white",  
+          font: {
+            size: 14 
+          }
+        }
+      }
+    },
     scales: {
       y: {
         beginAtZero: true,
+        ticks:{
+          beginAtZero: true,
+          color: 'white',
+          fontSize: 12,
+        }
+      },
+      x: {
+        ticks:{
+          color: 'white',
+          fontSize: 12,
+        }
       },
     },
   };
