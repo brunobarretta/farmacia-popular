@@ -13,9 +13,10 @@ const About = () => {
       <Elements.Container>
         <Elements.Title>Sobre o Projeto</Elements.Title>
         <Elements.Description>
-          Este projeto foi desenvolvido como uma plataforma para compartilhar
-          informações provenientes de sites oficiais do governo, promovendo a
-          disseminação de dados confiáveis e acessíveis.
+          Este projeto foi criado para facilitar o acesso às farmácias cadastradas no programa Farmácia Popular, por meio de uma plataforma acessível e confiável. 
+          Apesar da importância do programa, ainda não existe uma solução oficial do governo que disponibilize essas informações de forma centralizada e prática, 
+          como um mapa interativo. 
+          Nosso objetivo é preencher essa lacuna e oferecer uma ferramenta que ajude a população a localizar farmácias de forma simples e eficiente.
         </Elements.Description>
 
         <Elements.ProfileSection>
