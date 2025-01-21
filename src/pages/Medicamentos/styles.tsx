@@ -72,3 +72,16 @@ export const Description = styled.div`
 export const Links = styled.div`
   margin: 30px 0px;
 `
+
+export const LoadingContainer = styled.div`
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%; 
+  height: 100%; 
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background-color: rgba(0, 0, 0, 0.5); 
+  z-index: 20; 
+`;

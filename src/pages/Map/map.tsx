@@ -32,6 +32,7 @@ const PharmMap = () => {
     const mapRef = useRef<mapboxgl.Map | null>(null);
     const [mylocation, setMylocation] = useState<Location | null>(null);
     const [suggestions, setSuggestions] = useState([]);
+    const [displayChat, setDisplayChat] = useState(false);
 
     useEffect(() => {
         if (farmacias && farmacias.length) {
@@ -164,7 +165,6 @@ const PharmMap = () => {
 
                 <Elements.SearchBar>
                     <Elements.SearchContainer>
-
                         <Elements.Wrapper>
                             <Elements.SearchInput
                                 type="text"
@@ -204,7 +204,7 @@ const PharmMap = () => {
                         </Elements.SearchButton>
 
                         <Elements.LocateButton onClick={handleLocateClick}>
-                            <i className="fas fa-location-arrow"></i>
+                            <i className="fa-solid fa-location-crosshairs"></i>
                         </Elements.LocateButton>
 
                     </Elements.SearchContainer>
@@ -230,6 +230,10 @@ const PharmMap = () => {
                     onClick={onClick}
                     /> : null
                 }
+
+                {/* <Elements.ChatButton onClick={() => setDisplayChat(true)}>
+                    <i className="fa-solid fa-message" />
+                </Elements.ChatButton> */}
 
             </Elements.MapContainer>
         </>

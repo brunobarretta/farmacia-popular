@@ -72,11 +72,11 @@ const Table = ({ data, columns }: any) => {
             </tbody>
           </Elements.StyledTable>
         </Elements.TableWrapper>
-      </Elements.Container>
 
-      <Elements.Footer>
-        Exibindo {table.getRowModel().rows.length} resultados
-      </Elements.Footer>
+        <Elements.Footer>
+          Exibindo {table.getRowModel().rows.length} resultados
+        </Elements.Footer>
+      </Elements.Container>
     </ThemeProvider>
   );
 };

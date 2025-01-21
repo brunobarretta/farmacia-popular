@@ -3,6 +3,7 @@ import Table from '../../components/Table/table';
 import * as Elements from "./styles";
 import { Helmet } from 'react-helmet';
 import axios from 'axios';
+import Loading from '../../components/Loading/loading';
 
 
 const MedicamentosTable = () => {
@@ -48,6 +49,10 @@ const MedicamentosTable = () => {
       </Helmet>
 
       <Elements.Container>
+        {isLoading && <Elements.LoadingContainer>
+          <Loading />
+        </Elements.LoadingContainer>}
+
         <Elements.Header>
           <Elements.Title>Farmácia Popular - Medicamentos</Elements.Title>
           <Elements.Description>

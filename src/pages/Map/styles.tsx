@@ -75,6 +75,7 @@ export const LocateButton = styled.button`
   margin-left: 8px;
   padding: 0 16px;
   height: 48px;
+  width: 48px;
   background-color: ${({ theme }) => theme.colors.primary};
   color: white;
   border-radius: 25px;
@@ -83,6 +84,10 @@ export const LocateButton = styled.button`
   justify-content: center;
   cursor: pointer;
   border: 1px solid white;
+
+  i {
+    font-size: 20px;
+  }
 `;
 
 export const Suggestions = styled.ul`
@@ -151,3 +156,30 @@ export const LoadingContainer = styled.div`
   background-color: rgba(0, 0, 0, 0.5); 
   z-index: 20; 
 `;
+
+export const ChatButton = styled.div`
+  align-items: center;
+  cursor: pointer;
+  background: ${({ theme }) => theme.colors.primary};
+  bottom: 32px;
+  border-radius: 100%;
+  box-shadow: rgba(0, 0, 0, 0.15) 0px 12px 24px 0px;
+  display: flex;
+  height: 56px;
+  justify-content: center;
+  position: fixed;
+  right: 32px;
+  transform: scale(1);
+  transition: transform 0.3s;
+  width: 56px;
+  z-index: 999;
+
+  i {
+      font-size: 22px;
+      color: white
+  }
+  
+  &:hover {
+    background-color: ${({ theme }) => theme.colors.lightPurple};
+  }
+`
