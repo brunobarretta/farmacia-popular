@@ -52,50 +52,54 @@ const MedicamentosTable = () => {
         {isLoading && <Elements.LoadingContainer>
           <Loading />
         </Elements.LoadingContainer>}
-
-        <Elements.Header>
-          <Elements.Title>Farmácia Popular - Medicamentos</Elements.Title>
-          <Elements.Description>
-            <span>💊 <strong>Medicamentos Gratuitos e com Desconto</strong></span>
-            <p>
-              O <strong>Programa Farmácia Popular</strong> oferece medicamentos gratuitos ou com descontos para 
-              condições crônicas como <em>diabetes, asma, hipertensão, osteoporose</em> e muito mais. 
-              Beneficiários do <strong>Bolsa Família</strong> têm acesso a todos os medicamentos <u>sem custo adicional</u>.
-            </p>
-            <p>
-              Exemplos incluem <strong>sinvastatina</strong> para dislipidemia, <strong>alendronato</strong> para osteoporose e <strong>insulina</strong> para diabetes. 
-              Também estão disponíveis fraldas geriátricas para incontinência.
-            </p>
-            <p>
-              Qualquer pessoa com receita médica válida pode retirar medicamentos. 
-              Representantes legais também podem retirar em nome de pacientes impossibilitados de ir à farmácia.
-            </p>
-            <Elements.Links>
-              <strong>🔗 Links úteis:</strong>
-              <ul>
-                <li>
-                  <a 
-                    href="https://www.gov.br/saude/pt-br/composicao/sectics/farmacia-popular" 
-                    target="_blank" 
-                    rel="noopener noreferrer"
-                  >
-                    Sobre o Programa Farmácia Popular
-                  </a>
-                </li>
-                <li>
-                  <a 
-                    href="https://www.gov.br/saude/pt-br/composicao/sectics/farmacia-popular/arquivos/elenco-de-medicamentos-e-insumos.pdf" 
-                    target="_blank" 
-                    rel="noopener noreferrer"
-                  >
-                    Lista de Medicamentos e Insumos
-                  </a>
-                </li>
-              </ul>
-            </Elements.Links>
-          </Elements.Description>
-        </Elements.Header>
-        <Table data={data} columns={columns} />
+        <Elements.HeaderContainer>
+          <Elements.Header>
+            <Elements.Title>Farmácia Popular - Medicamentos</Elements.Title>
+            <Elements.Description>
+              <span>💊 <strong>Medicamentos Gratuitos e com Desconto</strong></span>
+              <p>
+                O <strong>Programa Farmácia Popular</strong> oferece medicamentos gratuitos ou com descontos para 
+                condições crônicas como <em>diabetes, asma, hipertensão, osteoporose</em> e muito mais. 
+                Beneficiários do <strong>Bolsa Família</strong> têm acesso a todos os medicamentos <u>sem custo adicional</u>.
+              </p>
+              <p>
+                Exemplos incluem <strong>sinvastatina</strong> para dislipidemia, <strong>alendronato</strong> para osteoporose e <strong>insulina</strong> para diabetes. 
+                Também estão disponíveis fraldas geriátricas para incontinência.
+              </p>
+              <p>
+                Qualquer pessoa com receita médica válida pode retirar medicamentos. 
+                Representantes legais também podem retirar em nome de pacientes impossibilitados de ir à farmácia.
+              </p>
+              <Elements.Links>
+                <strong>🔗 Links úteis:</strong>
+                <ul>
+                  <li>
+                    <a 
+                      href="https://www.gov.br/saude/pt-br/composicao/sectics/farmacia-popular" 
+                      target="_blank" 
+                      rel="noopener noreferrer"
+                    >
+                      Sobre o Programa Farmácia Popular
+                    </a>
+                  </li>
+                  <li>
+                    <a 
+                      href="https://www.gov.br/saude/pt-br/composicao/sectics/farmacia-popular/arquivos/elenco-de-medicamentos-e-insumos.pdf" 
+                      target="_blank" 
+                      rel="noopener noreferrer"
+                    >
+                      Lista de Medicamentos e Insumos
+                    </a>
+                  </li>
+                </ul>
+              </Elements.Links>
+            </Elements.Description>
+          </Elements.Header>
+        </Elements.HeaderContainer>
+        <Elements.TableContainer>
+          <Elements.Title>Lista de Medicamentos</Elements.Title>
+          <Table data={data} columns={columns} />
+        </Elements.TableContainer>
       </Elements.Container>
     </>
   );

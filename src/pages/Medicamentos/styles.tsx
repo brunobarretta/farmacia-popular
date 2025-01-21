@@ -2,11 +2,19 @@ import styled from "styled-components";
 
 export const Container = styled.div`
   height: 100%;
-  padding: 20px 40px;
   display: flex;
   flex-direction: column;
   align-items: center;
 `;
+
+export const HeaderContainer = styled.div`
+  background: #2d3748;
+  width: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 20px 40px;
+`
 
 export const Header = styled.div`
   margin-bottom: 20px;
@@ -71,6 +79,11 @@ export const Description = styled.div`
 
 export const Links = styled.div`
   margin: 30px 0px;
+`
+
+export const TableContainer = styled.div`
+  width: 100%;
+  padding: 20px 40px;
 `
 
 export const LoadingContainer = styled.div`
