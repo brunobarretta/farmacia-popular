@@ -16,6 +16,7 @@ interface Farmacia {
 interface FarmaciaContextType {
   farmacias: Farmacia[];
   loading: boolean;
+  progress: number;
 }
 
 export const FarmaciaContext = createContext<FarmaciaContextType | undefined>(undefined);
@@ -24,32 +25,47 @@ export const FarmaciaProvider: React.FC<{ children: React.ReactNode }> = ({ chil
   const api = import.meta.env.VITE_API;
   const [farmacias, setFarmacias] = useState<Farmacia[]>([]);
   const [loading, setLoading] = useState(true);
+  const [progress, setProgress] = useState(0);
   const baseURL = `${api}/api/farmacias`;
-
 
   useEffect(() => {
     const fetchFarmacias = async () => {
+      const limit = 1000;
+      let offset = 0;
+      let total = 0;
+      const allFarmacias: Farmacia[] = [];
+
+      setLoading(true);
+
       try {
-        const response = await axios.get(baseURL);
-        setFarmacias(response.data);
-        setLoading
+        do {
+          const response = await axios.get(baseURL, { params: { offset, limit } });
+          const { data, total: totalCount } = response.data;
+
+          allFarmacias.push(...data);
+          offset += limit; 
+          total = totalCount;
+
+          setFarmacias([...allFarmacias]); 
+          setProgress(((allFarmacias.length / total) * 100)); 
+        } while (offset < total);
       } catch (error) {
         console.error('Erro ao buscar farmácias:', error);
       }
-      setLoading(false)
+
+      setLoading(false);
     };
 
     fetchFarmacias();
   }, []);
 
   return (
-    <FarmaciaContext.Provider value={{ farmacias, loading }}>
+    <FarmaciaContext.Provider value={{ farmacias, loading, progress }}>
       {children}
     </FarmaciaContext.Provider>
   );
 };
 
-// Hook customizado para utilizar o contexto
 export function useFarmaciaContext() {
   const context = useContext(FarmaciaContext);
   if (!context) {

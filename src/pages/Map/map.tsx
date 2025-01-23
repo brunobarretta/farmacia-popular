@@ -25,7 +25,7 @@ interface Location {
 }
 
 const PharmMap = () => {
-    const { farmacias } = useFarmaciaContext();
+    const { farmacias, progress } = useFarmaciaContext();
     const [data, setData] = useState<any>(null);
     const [searchQuery, setSearchQuery] = useState("");
     const mapboxToken = import.meta.env.VITE_MAPBOX_ACCESS_TOKEN;
@@ -213,7 +213,8 @@ const PharmMap = () => {
                 <Elements.BottomBar>
                     <div className="info-box">
                         <i className="fa-solid fa-location-dot"></i>
-                        {`${farmacias.length.toLocaleString()} Farmácias Credenciadas`}
+                        {progress === 100 ? `${farmacias.length.toLocaleString()} Farmácias Credenciadas` 
+                        : `${progress.toFixed(0)}%  - Carregando dados`}
                     </div>
                 </Elements.BottomBar>
 
