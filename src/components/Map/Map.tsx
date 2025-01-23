@@ -11,7 +11,7 @@ const MapDisplay = React.forwardRef(({data, onClick, mapboxToken, initialViewSta
       mapboxAccessToken={mapboxToken}
       initialViewState={initialViewState}
       mapStyle="mapbox://styles/mapbox/streets-v12"
-      interactiveLayerIds={[clusterLayer.id]}
+      interactiveLayerIds={[clusterLayer.id ?? '']}
       onClick={onClick}
     >
       {data && (

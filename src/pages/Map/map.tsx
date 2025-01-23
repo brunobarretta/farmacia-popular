@@ -26,13 +26,13 @@ interface Location {
 
 const PharmMap = () => {
     const { farmacias } = useFarmaciaContext();
-    const [data, setData] = useState(null);
+    const [data, setData] = useState<any>(null);
     const [searchQuery, setSearchQuery] = useState("");
     const mapboxToken = import.meta.env.VITE_MAPBOX_ACCESS_TOKEN;
-    const mapRef = useRef<mapboxgl.Map | null>(null);
+    const mapRef = useRef<any>(null);
     const [mylocation, setMylocation] = useState<Location | null>(null);
     const [suggestions, setSuggestions] = useState([]);
-    const [displayChat, setDisplayChat] = useState(false);
+    // const [displayChat, setDisplayChat] = useState(false);
 
     useEffect(() => {
         if (farmacias && farmacias.length) {
@@ -74,7 +74,7 @@ const PharmMap = () => {
         }
     };
 
-    const handleInputChange = async (e) => {
+    const handleInputChange = async (e:any) => {
         const query = e.target.value;
         setSearchQuery(query);
 

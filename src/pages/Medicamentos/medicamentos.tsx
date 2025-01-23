@@ -34,7 +34,7 @@ const MedicamentosTable = () => {
       } catch (err) {
         console.error(err);
       } finally {
-        setIsLoading(false);
+        // setIsLoading(false);
       }
     };
 
@@ -48,10 +48,11 @@ const MedicamentosTable = () => {
         <title>Medicamentos das Farmácias Populares</title>
       </Helmet>
 
-      <Elements.Container>
-        {isLoading && <Elements.LoadingContainer>
+      {isLoading && <Elements.LoadingContainer>
           <Loading />
-        </Elements.LoadingContainer>}
+      </Elements.LoadingContainer>}
+
+      <Elements.Container isLoading={isLoading}>
         <Elements.HeaderContainer>
           <Elements.Header>
             <Elements.Title>Farmácia Popular - Medicamentos</Elements.Title>
